@@ -43,8 +43,12 @@ public class EmployeesCreateServlet extends HttpServlet {
 
             e.setCode(request.getParameter("code"));
             e.setName(request.getParameter("name"));
+
             String ppr = (String)this.getServletContext().getAttribute("pepper");
-            String psw = EncryptUtil.getPasswordEncrypt("password", ppr);
+
+            String psw = request.getParameter("password");
+
+            psw = EncryptUtil.getPasswordEncrypt(psw, ppr);
             e.setPassword(psw);
             /*
             e.setPassword(

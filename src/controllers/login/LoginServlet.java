@@ -64,10 +64,11 @@ public class LoginServlet extends HttpServlet {
             String password = EncryptUtil.getPasswordEncrypt(plain_pass,(String)this.getServletContext().getAttribute("pepper"));
 
             //社員番号とパスワードが正しいかチェックする
-            try {e = em.createNamedQuery("checkLoginCodeAndPassword",Employee.class)
-                .setParameter("code",code)
-                .setParameter("pass",password)
-                .getSingleResult();
+            try {
+                e = em.createNamedQuery("checkLoginCodeAndPassword",Employee.class)
+                      .setParameter("code",code)
+                      .setParameter("pass",password)
+                      .getSingleResult();
             } catch(NoResultException ex) {}
 
             em.close();
